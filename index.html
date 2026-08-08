@@ -1,0 +1,361 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Um presente para você 🎁</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, #4c1d95 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, #1e3a8a 0%, transparent 30%),
+                linear-gradient(135deg, #09090f, #17113b, #24104f);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Estrelas */
+        .estrela {
+            position: absolute;
+            color: white;
+            opacity: 0.6;
+            animation: piscar 3s infinite;
+        }
+
+        .e1 { top: 10%; left: 12%; font-size: 12px; }
+        .e2 { top: 20%; right: 15%; font-size: 18px; animation-delay: 1s; }
+        .e3 { bottom: 15%; left: 10%; font-size: 16px; animation-delay: 2s; }
+        .e4 { bottom: 25%; right: 12%; font-size: 10px; animation-delay: 1.5s; }
+        .e5 { top: 45%; left: 5%; font-size: 8px; animation-delay: 0.5s; }
+        .e6 { top: 65%; right: 6%; font-size: 13px; animation-delay: 2.5s; }
+
+        @keyframes piscar {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 520px;
+            text-align: center;
+            padding: 42px 30px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 28px;
+            backdrop-filter: blur(18px);
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.5),
+                inset 0 1px rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .emoji {
+            font-size: 70px;
+            margin-bottom: 15px;
+            animation: flutuar 3s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .intro {
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        /* Botões */
+        .botao {
+            display: inline-block;
+            border: none;
+            padding: 15px 28px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            background: white;
+            color: #312e81;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            margin: 6px;
+        }
+
+        .botao:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .botao-presente {
+            background: linear-gradient(135deg, #ffffff, #ddd6fe);
+        }
+
+        .botao-link {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            color: white;
+            margin-top: 15px;
+        }
+
+        /* Mensagem */
+        #mensagem {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.22);
+            border: 1px solid rgba(255,255,255,0.1);
+            line-height: 1.8;
+            color: #f3f4f6;
+            animation: aparecer 0.7s ease;
+        }
+
+        #mensagem p {
+            margin-bottom: 15px;
+        }
+
+        #mensagem p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .destaque {
+            color: #c4b5fd;
+            font-weight: bold;
+        }
+
+        .assinatura {
+            margin-top: 22px;
+            color: #c4b5fd;
+            font-style: italic;
+        }
+
+        .coracao {
+            margin-top: 20px;
+            font-size: 24px;
+            animation: pulsar 1.5s infinite;
+        }
+
+        @keyframes pulsar {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .link-area {
+            display: none;
+            margin-top: 20px;
+            animation: aparecer 0.8s ease;
+        }
+
+        .pequeno {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-top: 10px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 35px 22px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .emoji {
+                font-size: 60px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+
+            #mensagem {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Estrelas decorativas -->
+    <div class="estrela e1">✦</div>
+    <div class="estrela e2">✦</div>
+    <div class="estrela e3">✧</div>
+    <div class="estrela e4">✦</div>
+    <div class="estrela e5">✧</div>
+    <div class="estrela e6">✦</div>
+
+
+    <div class="container">
+
+        <div class="emoji">🎁</div>
+
+        <h1>Isso aqui é para você.</h1>
+
+        <p class="intro">
+            Fiz uma pequena surpresa para aqueles dias em que
+            as coisas parecem um pouco mais difíceis.
+        </p>
+
+        <!-- PRIMEIRO BOTÃO -->
+        <button class="botao botao-presente" onclick="mostrarMensagem()">
+            ✨ Clique aqui
+        </button>
+
+
+        <!-- MENSAGEM -->
+        <div id="mensagem">
+
+            <p>
+                Ei... respira.
+            </p>
+
+            <p>
+                Nem todo dia precisa ser um dia incrível.
+                Às vezes a gente só precisa passar por ele.
+            </p>
+
+            <p>
+                Se hoje estiver difícil, lembra de uma coisa:
+                <span class="destaque">
+                    você não precisa resolver tudo agora.
+                </span>
+            </p>
+
+            <p>
+                Você já passou por dias difíceis antes.
+                Esse também vai passar.
+            </p>
+
+            <p>
+                E quando esquecer o quanto é importante,
+                volte aqui e leia isso novamente.
+            </p>
+
+            <div class="assinatura">
+                "Você é muito mais forte do que imagina."
+            </div>
+
+            <div class="coracao">
+                ❤️
+            </div>
+
+        </div>
+
+
+        <!-- ÁREA DO PRESENTE -->
+        <div class="link-area" id="linkArea">
+
+            <!--
+                =================================================
+                COLOQUE O LINK DO PRESENTE AQUI
+                =================================================
+
+                Troque:
+                https://SEU-LINK-AQUI.com
+
+                pelo endereço que você quiser.
+            -->
+
+            <a
+                href="https://www.travesticomlocal.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="botao botao-link"
+            >
+                🎁 Tem mais uma coisa para você
+            </a>
+
+            <div class="pequeno">
+                Porque você merece uma surpresa. ✨
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function mostrarMensagem() {
+
+            const mensagem = document.getElementById("mensagem");
+            const linkArea = document.getElementById("linkArea");
+
+            mensagem.style.display = "block";
+
+            // Mostra o botão do presente depois da mensagem
+            setTimeout(function() {
+                linkArea.style.display = "block";
+            }, 700);
+
+            // Rola suavemente até a mensagem
+            setTimeout(function() {
+                mensagem.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }, 100);
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
